@@ -209,17 +209,15 @@ class tvpanasonic extends eqLogic {
 	public function onMethode() {
 		$etatTv = $this->getCmd(null, 'onoff_state');
 		if (is_object($etatTv) && $etatTv->formatValue(0) === $etatTv->execCmd(null, 2)) {
-			return $this->onOffMethode();
+			$this->onOffMethode();
 		}
-		return 'oups';
 	}
 	
 	public function offMethode() {
 		$etatTv = $this->getCmd(null, 'onoff_state');
 		if (is_object($etatTv) && $etatTv->formatValue(1) === $etatTv->execCmd(null, 2)) {
-			return $this->onOffMethode();
+			$this->onOffMethode();
 		}
-		return 'oups';
 	}
 	
 	public function onOffMethode() {
@@ -245,9 +243,7 @@ class tvpanasonic extends eqLogic {
 			$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 			curl_close($curl);
 			log::add( 'tvpanasonic', 'info', 'onOffMethode reponse : '.$httpcode.' et '.print_r($response).' et enfin '.$err );
-			return 'OK';
 		}
-		return 'oups';
 	}
 	
 	/*
