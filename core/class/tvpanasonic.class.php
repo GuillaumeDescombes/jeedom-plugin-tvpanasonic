@@ -129,7 +129,7 @@ class tvpanasonic extends eqLogic {
             $on->save();
         }
         $off = $this->getCmd(null, 'off');
-        if(!is_object($on)) {
+        if(!is_object($off)) {
             $off = new tvpanasonicCmd();
             $off->setLogicalId('off');
             $off->setName('Off');
