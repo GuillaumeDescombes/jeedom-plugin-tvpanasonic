@@ -1,0 +1,11 @@
+{
+  "id": "tvpanasonic",
+  "name": "Panasonic TV",
+  "description": "Panasonic TV",
+  "licence": "AGPL",
+  "author": "Julien Fabre",
+  "category": "multimedia",
+  "hasDependency": false,
+  "hasOwnDeamon": false,
+  "maxDependancyInstallTime": 0
+}
