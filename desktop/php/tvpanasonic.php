@@ -2,8 +2,10 @@
 if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJS('eqType', 'tvpanasonic');
-$eqLogics = eqLogic::byType('tvpanasonic');
+$plugin = plugin::byId('tvpanasonic');
+sendVarToJS('eqType', $plugin->getId());
+$eqLogics = eqLogic::byType($plugin->getId());
+
 ?>
 
 <div class="row row-overflow">
@@ -112,4 +114,4 @@ $eqLogics = eqLogic::byType('tvpanasonic');
 </div>
 
 <?php include_file('desktop', 'tvpanasonic', 'js', 'tvpanasonic'); ?>
-<?php include_file('core', 'plugin.ajax', 'js'); ?>
+<?php include_file('core', 'plugin.template', 'js'); ?>

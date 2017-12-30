@@ -78,7 +78,7 @@ function addCmdToTable(_cmd) {
     tr += '<td>';
     if (is_numeric(_cmd.id)) {
         tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
-        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}}</a>';
+        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
     }
     tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>';
     tr += '</tr>';
@@ -93,15 +93,18 @@ function addCmdToTable(_cmd) {
 /* Fonction appelé pour mettre l'affichage à jour pour la sauvegarde en temps réel
  * _data: les détails des informations à sauvegardé
  */
+/*
 function displayEqLogic(_data) {
-    
+
 }
+*/
 
 /* Fonction appelé pour mettre l'affichage à jour de la sidebar et du container 
  * en asynchrone, est appelé en début d'affichage de page, au moment de la sauvegarde,
  * de la suppression, de la création
  * _callback: obligatoire, permet d'appeler une fonction en fin de traitement
  */
+/*
 function updateDisplayPlugin(_callback) {
     $.ajax({
         type: "POST",
@@ -215,3 +218,4 @@ function updateDisplayPlugin(_callback) {
         }
     });
 }
+*/
