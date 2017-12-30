@@ -94,8 +94,9 @@ $eqLogics = eqLogic::byType('tvpanasonic');
                         <tr>
                             <th>{{Nom}}</th>
                             <th>{{Type}}</th>
-                            <th>{{Option}}</th>
+                            <th>{{Logical ID (info) ou Commande brute (action)}}</th>
                             <th>{{Divers}}</th>
+                            <th>{{Option}}</th>
                             <th>{{Action}}</th>
                         </tr>
                     </thead>
