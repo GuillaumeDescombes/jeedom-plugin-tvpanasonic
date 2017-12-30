@@ -104,6 +104,7 @@ function displayEqLogic(_data) {
  * de la suppression, de la création
  * _callback: obligatoire, permet d'appeler une fonction en fin de traitement
  */
+/*
 function updateDisplayPlugin(_callback) {
     $.ajax({
         type: "POST",
@@ -217,3 +218,4 @@ function updateDisplayPlugin(_callback) {
         }
     });
 }
+*/

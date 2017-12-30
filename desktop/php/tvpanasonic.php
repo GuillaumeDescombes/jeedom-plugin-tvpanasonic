@@ -12,19 +12,35 @@ $eqLogics = eqLogic::byType($plugin->getId());
     <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar">
             <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
-                <a class="btn btn-default eqLogicAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="add">
-                    <i class="fa fa-plus-circle"></i> {{Ajouter un Panasonic TV}}
-                </a>
-                <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+                <a class="btn btn-default eqLogicAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"
+                   data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter un matériel}}</a>
+                <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm"
+                                                                      placeholder="{{Rechercher}}" style="width: 100%"/>
+                </li>
+                <?php
+                foreach ($eqLogics as $eqLogic) {
+                    echo '<li class="cursor li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '"><a>' . $eqLogic->getHumanName(true) . '</a></li>';
+                }
+                ?>
             </ul>
-            <ul id="ul_eqLogicView" class="nav nav-pills nav-stacked"></ul> <!-- la sidebar -->
         </div>
     </div>
 
     <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
         <legend>{{Mes Panasonic TV}}</legend> <!-- changer pour votre type d'équipement -->
 
-        <div class="eqLogicThumbnailContainer"></div> <!-- le container -->
+        <div class="eqLogicThumbnailContainer">
+            <?php
+            foreach ($eqLogics as $eqLogic) {
+                echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+                echo "<center>";
+                echo '<img src="plugins/tvpanasonic/doc/images/tvpanasonic_icon.png" height="105" width="95" />';
+                echo "</center>";
+                echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
+                echo '</div>';
+            }
+            ?>
+        </div>
     </div>
 
     <!-- Affichage de l'eqLogic sélectionné -->
@@ -114,7 +130,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 <?php
 include_file('desktop', 'tvpanasonic', 'js', 'tvpanasonic');
-include_file('core', 'plugin.ajax', 'js');
 include_file('core', 'plugin.template', 'js');
 ?>
 
