@@ -117,7 +117,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     <thead>
                         <tr>
                             <th>{{Nom Affiché}}</th>
-                            <th>{{Rubrique}}</th>
                             <th>{{Type}}</th>
                             <th>{{Option}}</th>
                             <th>{{Divers}}</th>
