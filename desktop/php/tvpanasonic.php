@@ -102,6 +102,19 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">{{Catégorie}}</label>
+                            <div class="col-sm-9">
+                                <?php
+                                foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+                                    echo '<label class="checkbox-inline">';
+                                    echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
+                                    echo '</label>';
+                                }
+                                ?>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">Adresse IP TV Panasonic</label>
                             <div class="col-sm-3">
                                 <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="ipTvPanasonic"/>

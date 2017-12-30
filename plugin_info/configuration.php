@@ -22,30 +22,3 @@ if (!isConnect()) {
     die();
 }
 ?>
-<form class="form-horizontal">
-    <fieldset>
-    </fieldset>
-</form>
-
-<!--<script>
-    $('#bt_syncWithKnxipbaos').on('click',function(){
- $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "plugins/knxipbaos/core/ajax/knxipbaos.ajax.php", // url du fichier php
-            data: {
-                action: "synchronisation",
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error);
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#div_alert').showAlert({message: '{{Synchronisation réussie}}', level: 'success'});
-        }
-    });
-});
-</script>-->

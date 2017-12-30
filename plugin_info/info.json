@@ -4,6 +4,7 @@
   "description": "Panasonic TV",
   "licence": "AGPL",
   "author": "Julien Fabre",
+  "require" : "3.0",
   "category": "multimedia",
   "hasDependency": false,
   "hasOwnDeamon": false,
