@@ -146,15 +146,18 @@ class tvpanasonic extends eqLogic {
             $off->setValue($onoff_state->getId());
             $off->save();
         }
-		
-		$refresh = new tvpanasonicCmd();
-		$refresh->setLogicalId('refresh');
-		$refresh->setIsVisible(1);
-		$refresh->setName('Rafraîchir');
-		$refresh->setEqLogic_id($this->getId());
-		$refresh->setType('action');
-		$refresh->setSubType('other');		
-		$refresh->save();
+
+        $refresh = $this->getCmd(null, 'refresh');
+        if(!is_object($refresh)) {
+            $refresh = new tvpanasonicCmd();
+            $refresh->setLogicalId('refresh');
+            $refresh->setIsVisible(1);
+            $refresh->setName('Rafraîchir');
+            $refresh->setEqLogic_id($this->getId());
+            $refresh->setType('action');
+            $refresh->setSubType('other');
+            $refresh->save();
+        }
 	}
 	
 	/* fonction appelé après la fin de la séquence de sauvegarde */
