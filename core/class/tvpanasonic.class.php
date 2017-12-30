@@ -104,6 +104,7 @@ class tvpanasonic extends eqLogic {
             $onoff_state->setLogicalId('onoff_state');
             $onoff_state->setIsVisible(1);
             $onoff_state->setName('Etat');
+            $onoff_state->setIsVisible(0);
             $onoff_state->setEqLogic_id($this->getId());
             $onoff_state->setDisplay('generic_type', 'ENERGY_STATE');
         }
