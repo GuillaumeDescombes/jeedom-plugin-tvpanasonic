@@ -114,4 +114,4 @@ $eqLogics = eqLogic::byType($plugin->getId());
 </div>
 
 <?php include_file('desktop', 'tvpanasonic', 'js', 'tvpanasonic'); ?>
-<?php include_file('core', 'plugin.template', 'js'); ?>
+<?php include_file('core', 'plugin.ajax', 'js'); ?>
