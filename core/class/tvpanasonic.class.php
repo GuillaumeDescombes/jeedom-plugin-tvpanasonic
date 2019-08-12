@@ -34,7 +34,7 @@ class tvpanasonic extends eqLogic {
 	
 	
 	// Fonction exécutée automatiquement toutes les minutes par Jeedom
-	public static function cron() {
+	public static function refresh() {
 		foreach (self::byType('tvpanasonic') as $tvpanasonic) {
 			if ($tvpanasonic->getIsEnable() == 1) {
 				$tvpanasonic->refreshStatus();
