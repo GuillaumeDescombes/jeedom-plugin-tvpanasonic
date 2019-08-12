@@ -176,38 +176,40 @@ class tvpanasonic extends eqLogic {
 	public function refreshStatus(){
 		$ip = $this->getConfiguration('ipTvPanasonic');	
 		log::add( 'tvpanasonic', 'info', 'refreshStatus start avec l\'ip '.$ip );
-		$curl = curl_init();		
-		curl_setopt_array($curl, array(
-				CURLOPT_URL => "http://".$ip.":55000/dmr/control_0",
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_TIMEOUT => 3,
-				CURLOPT_POST => true,
-				CURLOPT_POSTFIELDS => "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n <s:Body>\r\n  <u:GetVolume xmlns:u=\"urn:schemas-upnp-org:service:RenderingControl:1\">\r\n   <InstanceID>0</InstanceID>\r\n   <Channel>Master</Channel>\r\n   <DesiredVolume></DesiredVolume>\r\n  </u:GetVolume>\r\n </s:Body>\r\n</s:Envelope>",
-				CURLOPT_HTTPHEADER => array(
-						"content-type: text/xml",
-						"soapaction: \"urn:schemas-upnp-org:service:RenderingControl:1#GetVolume\""
-				)
-		));		
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-		$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-		curl_close($curl);
-		$etatTv = $this->getCmd(null, 'onoff_state');
-		log::add( 'tvpanasonic', 'info', 'refreshStatus info : '.$httpcode.' et '.print_r($response).' et enfin '.$err);
-		if ($httpcode==200) {
-		 	log::add ( 'tvpanasonic', 'info', 'refreshStatus info : ' . print_r($response) );
-		 	if (is_object($etatTv) && $etatTv->formatValue(1) !== $etatTv->execCmd(null, 2)) {
-				 $etatTv->setCollectDate('');
-		 		 $etatTv->event(1);
-		    } //Etat a OK
-		 } else {
-			 log::add( 'tvpanasonic', 'error', 'refreshStatus error : ' . $err);
-			 if (is_object($etatTv) && $etatTv->formatValue(0) !== $etatTv->execCmd(null, 2)) {
-				 $etatTv->setCollectDate('');
-				 $etatTv->event(0);
-			 }
-		 }
-		 $this->refreshWidget();
+		if($ip != '') {
+            $curl = curl_init();
+            $post = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n <s:Body>\r\n  <u:GetVolume xmlns:u=\"urn:schemas-upnp-org:service:RenderingControl:1\">\r\n   <InstanceID>0</InstanceID>\r\n   <Channel>Master</Channel>\r\n   <DesiredVolume></DesiredVolume>\r\n  </u:GetVolume>\r\n </s:Body>\r\n</s:Envelope>";
+            curl_setopt_array($curl, array(
+                    CURLOPT_URL => "http://".$ip.":55000/dmr/control_0",
+                    CURLOPT_RETURNTRANSFER => false,
+                    CURLOPT_TIMEOUT => 2,
+                    CURLOPT_CONNECTTIMEOUT => 2,
+                    CURLOPT_POST => true,
+                    CURLOPT_POSTFIELDS => $post,
+                    CURLOPT_HTTPHEADER => array(
+                            "content-type: text/xml",
+                            "content-length: ".$post.length,
+                            "soapaction: \"urn:schemas-upnp-org:service:RenderingControl:1#GetVolume\""
+                    )
+            ));
+            $response = curl_exec($curl);
+            $httpcode = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+            curl_close($curl);
+            $etatTv = $this->getCmd(null, 'onoff_state');
+            log::add( 'tvpanasonic', 'info', 'refreshStatus info : '.$httpcode.' et '.print_r($response));
+            if ($httpcode>=200 && $httpcode<300) {
+                if (is_object($etatTv) && $etatTv->formatValue(1) !== $etatTv->execCmd(null, 2)) {
+                     $etatTv->setCollectDate('');
+                     $etatTv->event(1);
+                }
+             } else {
+                 if (is_object($etatTv) && $etatTv->formatValue(0) !== $etatTv->execCmd(null, 2)) {
+                     $etatTv->setCollectDate('');
+                     $etatTv->event(0);
+                 }
+             }
+             $this->refreshWidget();
+        }
 	}
 	
 	public function onMethode() {
@@ -233,6 +235,7 @@ class tvpanasonic extends eqLogic {
 			curl_setopt_array($curl, array(
 					CURLOPT_URL => "http://".$ip.":55000/nrc/control_0",
 					CURLOPT_TIMEOUT => 2,
+                    CURLOPT_CONNECTTIMEOUT => 2,
 					CURLOPT_POST => true,
 					CURLOPT_POSTFIELDS => $post,
 					CURLOPT_HTTPHEADER => array(
@@ -241,12 +244,9 @@ class tvpanasonic extends eqLogic {
 							"soapaction: \"urn:panasonic-com:service:p00NetworkControl:1#X_SendKey\""
 					)
 			));
-				
 			$response = curl_exec($curl);
-			$err = curl_error($curl);
-			$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 			curl_close($curl);
-			log::add( 'tvpanasonic', 'info', 'onOffMethode reponse : '.$httpcode.' et '.print_r($response).' et enfin '.$err );
+			log::add( 'tvpanasonic', 'info', 'onOffMethode reponse : '.print_r($response));
 		}
 	}
 	
