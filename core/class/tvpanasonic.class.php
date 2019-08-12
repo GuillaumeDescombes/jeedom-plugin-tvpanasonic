@@ -201,10 +201,9 @@ class tvpanasonic extends eqLogic {
             ));
             $response = curl_exec($curl);
             $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-            $err = curl_error($curl);
             curl_close($curl);
             $etatTv = $this->getCmd(null, 'onoff_state');
-            log::add( 'tvpanasonic', 'info', 'refreshStatus info : '.$httpcode.' et '.print_r($response).' et erreur : '.$err);
+            log::add( 'tvpanasonic', 'info', 'refreshStatus info : '.$httpcode.' et '.print_r($response));
             if ($httpcode>=200 && $httpcode<300) {
                 if (is_object($etatTv) && $etatTv->formatValue(1) !== $etatTv->execCmd()) {
                      $etatTv->setCollectDate('');
