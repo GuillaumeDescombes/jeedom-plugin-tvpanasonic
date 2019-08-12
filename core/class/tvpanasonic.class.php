@@ -193,17 +193,17 @@ class tvpanasonic extends eqLogic {
                     )
             ));
             $response = curl_exec($curl);
-            $httpcode = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+            $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             curl_close($curl);
             $etatTv = $this->getCmd(null, 'onoff_state');
             log::add( 'tvpanasonic', 'info', 'refreshStatus info : '.$httpcode.' et '.print_r($response));
             if ($httpcode>=200 && $httpcode<300) {
-                if (is_object($etatTv) && $etatTv->formatValue(1) !== $etatTv->execCmd(null, 2)) {
+                if (is_object($etatTv) && $etatTv->formatValue(1) !== $etatTv->execCmd()) {
                      $etatTv->setCollectDate('');
                      $etatTv->event(1);
                 }
              } else {
-                 if (is_object($etatTv) && $etatTv->formatValue(0) !== $etatTv->execCmd(null, 2)) {
+                 if (is_object($etatTv) && $etatTv->formatValue(0) !== $etatTv->execCmd()) {
                      $etatTv->setCollectDate('');
                      $etatTv->event(0);
                  }
@@ -214,14 +214,14 @@ class tvpanasonic extends eqLogic {
 	
 	public function onMethode() {
 		$etatTv = $this->getCmd(null, 'onoff_state');
-		if (is_object($etatTv) && $etatTv->formatValue(0) === $etatTv->execCmd(null, 2)) {
+		if (is_object($etatTv) && $etatTv->formatValue(0) === $etatTv->execCmd()) {
 			$this->onOffMethode();
 		}
 	}
 	
 	public function offMethode() {
 		$etatTv = $this->getCmd(null, 'onoff_state');
-		if (is_object($etatTv) && $etatTv->formatValue(1) === $etatTv->execCmd(null, 2)) {
+		if (is_object($etatTv) && $etatTv->formatValue(1) === $etatTv->execCmd()) {
 			$this->onOffMethode();
 		}
 	}
