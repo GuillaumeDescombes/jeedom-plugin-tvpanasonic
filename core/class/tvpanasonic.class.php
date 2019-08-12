@@ -182,7 +182,7 @@ class tvpanasonic extends eqLogic {
             curl_setopt_array($curl, array(
                     CURLOPT_URL => "http://".$ip.":55000/dmr/control_0",
                     CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_TIMEOUT => 2,
+                    CURLOPT_TIMEOUT => 10,
                     CURLOPT_POST => true,
                     CURLOPT_POSTFIELDS => $post,
                     CURLOPT_HTTPHEADER => array(
