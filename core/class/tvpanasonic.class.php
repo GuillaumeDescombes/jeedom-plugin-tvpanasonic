@@ -183,11 +183,11 @@ class tvpanasonic extends eqLogic {
                     CURLOPT_URL => "http://".$ip.":55000/dmr/control_0",
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_TIMEOUT => 2,
-                    CURLOPT_CONNECTTIMEOUT => 2,
                     CURLOPT_POST => true,
                     CURLOPT_POSTFIELDS => $post,
                     CURLOPT_HTTPHEADER => array(
                             "content-type: text/xml",
+                            "content-length: ".$post.length,
                             "soapaction: \"urn:schemas-upnp-org:service:RenderingControl:1#GetVolume\""
                     )
             ));
@@ -233,8 +233,7 @@ class tvpanasonic extends eqLogic {
 			$post = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n <s:Body>\r\n  <u:X_SendKey xmlns:u=\"urn:panasonic-com:service:p00NetworkControl:1\">\r\n   <X_KeyEvent>NRC_POWER-ONOFF</X_KeyEvent>\r\n  </u:X_SendKey>\r\n </s:Body>\r\n</s:Envelope>";
 			curl_setopt_array($curl, array(
 					CURLOPT_URL => "http://".$ip.":55000/nrc/control_0",
-					CURLOPT_TIMEOUT => 2,
-                    CURLOPT_CONNECTTIMEOUT => 2,
+					CURLOPT_TIMEOUT => 3,
 					CURLOPT_POST => true,
 					CURLOPT_POSTFIELDS => $post,
 					CURLOPT_HTTPHEADER => array(
