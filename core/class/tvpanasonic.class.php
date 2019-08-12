@@ -33,7 +33,7 @@ class tvpanasonic extends eqLogic {
 	/* methode de test à améliorer */
 	
 	
-	// Fonction exécutée automatiquement toutes les minutes par Jeedom
+
 	public static function pull() {
 		foreach (self::byType('tvpanasonic') as $tvpanasonic) {
 			if ($tvpanasonic->getIsEnable() == 1) {
@@ -41,6 +41,15 @@ class tvpanasonic extends eqLogic {
 			}
 		}
 	}
+
+    // Fonction exécutée automatiquement toutes les minutes par Jeedom
+    /*public static function cron() {
+        foreach (self::byType('tvpanasonic') as $tvpanasonic) {
+            if ($tvpanasonic->getIsEnable() == 1) {
+                $tvpanasonic->refreshStatus();
+            }
+        }
+    }*/
 	
 	/*
 	 * // Fonction exécutée automatiquement toutes les heures par Jeedom
