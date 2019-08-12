@@ -19,11 +19,11 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function tvpanasonic_install() {
-    $cron = cron::byClassAndFunction('tvpanasonic', 'refresh');
+    $cron = cron::byClassAndFunction('tvpanasonic', 'pull');
     if (!is_object($cron)) {
         $cron = new cron();
         $cron->setClass('tvpanasonic');
-        $cron->setFunction('refresh');
+        $cron->setFunction('pull');
         $cron->setEnable(1);
         $cron->setDeamon(0);
         $cron->setSchedule('*/5 * * * *');
@@ -32,11 +32,11 @@ function tvpanasonic_install() {
 }
 
 function tvpanasonic_update() {
-    $cron = cron::byClassAndFunction('tvpanasonic', 'refresh');
+    $cron = cron::byClassAndFunction('tvpanasonic', 'pull');
     if (!is_object($cron)) {
         $cron = new cron();
         $cron->setClass('tvpanasonic');
-        $cron->setFunction('refresh');
+        $cron->setFunction('pull');
         $cron->setEnable(1);
         $cron->setDeamon(0);
         $cron->setSchedule('*/5 * * * *');
