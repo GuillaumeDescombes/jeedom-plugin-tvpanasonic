@@ -115,9 +115,21 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Adresse IP TV Panasonic</label>
+                            <label class="col-sm-3 control-label">Adresse IP</label>
                             <div class="col-sm-3">
                                 <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="ipTvPanasonic"/>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">Application ID</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="appId"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Encryption Key</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="encryptionKey"/>
                             </div>
                         </div>
                     </fieldset>
