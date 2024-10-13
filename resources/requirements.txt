@@ -1,0 +1,6 @@
+xmltodict
+aiohttp
+pycrypto
+requests
+serial
+pyudev
